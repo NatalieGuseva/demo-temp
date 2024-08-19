@@ -12,10 +12,10 @@ public class Main {
         if ((input.matches("(.*)\\-(.*)"))) {
             System.out.print("\"" + Strings.operationMinus(input) + "\"");
         }
-        if ((input.matches("(.*)\\*\\d"))) {
+        if ((input.matches("(.*)\\*\\d+"))) {
             System.out.print("\"" + Strings.operationMultiplication(input) + "\"");
         }
-        if ((input.matches("(.*)\\/\\d"))) {
+        if ((input.matches("(.*)\\/\\d+"))) {
             System.out.print("\"" + Strings.operationDivision(input) + "\"");
         }
         scanner.close();
