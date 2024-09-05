@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ public class Main {
     static String result = "";
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("Введите выражение [\"a\" + \"b\", \"a\" - \"b\", \"a\" * x, \"a\" / x]" +
                 " где a и b - строки, а x - число  от 1 до 10 включительно  + Enter ");
 //  Считываем строку userInput которую ввёл пользователь
@@ -18,13 +19,15 @@ public class Main {
         work(input);
     }
 
-    private static void work(String userInput) {
+    private static void work(String userInput) throws IOException {
         String[] blocks = userInput.split("['\"']");
         if (blocks.length == 4) {
             String str1 = blocks[1];
             String str2 = blocks[3];
             if ((str1.length() <= 10) && str2.length() <= 10) {
                 result = calculated(str1, str2, operation);
+            } else {
+                throw new IOException();
             }
             if (result.length() > 40) {
                 String rez = result.substring(0, 40);
@@ -36,8 +39,10 @@ public class Main {
             String str1 = blocks[1];
             String str2 = blocks[2].replaceAll("\\D", "");
             number = Integer.parseInt(str2);
-            if ((number > 0) && number <= 10) {
+            if ((number > 0) && number <= 10 && str1.length() <= 10) {
                 result = calculated(str1, operation, number);
+            } else {
+                throw new IOException();
             }
             if (result.length() > 40) {
                 String rez = result.substring(0, 40);
